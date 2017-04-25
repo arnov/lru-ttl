@@ -1,9 +1,12 @@
 from distutils.core import setup
+from setuptools import find_packages
+
 
 setup(
     name='lru-ttl',
     version='0.0.1',
     py_modules=['lruttl'],
+    packages=find_packages(),
     description='A least recently used (LRU) cache implementation with time to live (TTL)',
     author='Arno Veenstra',
     author_email='arnoveenstra@gmail.com',
