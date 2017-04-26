@@ -18,3 +18,30 @@ pip install lru-ttl
 >>> cache['key1']
 
 ```
+
+```python
+>>> cache = LRUCache(2)
+>>> cache.set('key1', 'val1')
+>>> cache.set('key2', 'val2')
+>>> cache.set('key3', 'val3')
+>>> 'key1' in cache
+False
+>>> 'key2' in cache
+True
+>>> 'key3' in cache
+True
+```
+
+The TTL does **not** have precedence, so the last recently used keys will be evicted first!
+
+
+```python
+>>> cache = LRUCache(2)
+>>> cache.set('key1', 'val1')
+>>> cache.set('key2', 'val2', 10000)
+>>> cache.set('key3', 'val3')
+>>> 'key1' in cache
+False
+>>> 'key2' in cache
+True
+```
