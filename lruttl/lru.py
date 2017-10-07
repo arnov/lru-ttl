@@ -3,8 +3,9 @@ from collections import OrderedDict
 
 
 class LRUCache(object):
-    def __init__(self, size):
+    def __init__(self, size, default_ttl=None):
         self.size = size
+        self.default_ttl = default_ttl
         self.cache = OrderedDict()
 
     def __contains__(self, key):
@@ -12,6 +13,9 @@ class LRUCache(object):
 
     def __getitem__(self, key):
         return self.get(key)
+    
+    def __setitem__(self, key, value):
+        self.set(key, value, self.default_ttl)
 
     def set(self, key, value, ttl=None):
         if len(self.cache) == self.size:
