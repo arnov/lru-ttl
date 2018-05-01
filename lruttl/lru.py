@@ -26,11 +26,20 @@ class LRUCache(object):
         item = {'value': value,
                 'expires': expires}
         self.cache[key] = item
+        
+    if hasattr(OrderedDict, 'move_to_end'):
+        # python 3.2+
+        def _move_to_end(self, key):
+            self.cache.move_to_end(key)
+    else:
+        # python 2.7
+        def _move_to_end(self, key):
+            self.cache[key] = self.cache.pop(key)
 
     def get(self, key):
         if key in self.cache:
             now = datetime.now()
-            self.cache.move_to_end(key)  # Mark as most recently used
+            self._move_to_end(key)  # Mark as most recently used
 
             item = self.cache[key]
             if item['expires'] and item['expires'] < now:
