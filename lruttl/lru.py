@@ -26,7 +26,7 @@ class LRUCache(object):
         item = {'value': value,
                 'expires': expires}
         self.cache[key] = item
-        
+
     if hasattr(OrderedDict, 'move_to_end'):
         # python 3.2+
         def _move_to_end(self, key):
