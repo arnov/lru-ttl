@@ -10,7 +10,7 @@ if os.path.isfile('README.md'):
 
 setup(
     name='lru-ttl',
-    version='0.0.5',
+    version='0.0.6',
     py_modules=['lruttl'],
     packages=find_packages(),
     description='A least recently used (LRU) cache implementation with time to live (TTL)',
